@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <cstring>  
+
+int main() {
+    std::string cadena;
+    int  tieneLetras=0 , tieneDigitos=0 ,otro=0;
+
+    std::cout << "Ingresa la cadena: ";
+    std::getline(std::cin, cadena ); 
+     
+	
+    
+    for (std::string::size_type i = 0; i < cadena.length(); ++i) {
+		char* cstr = new char[cadena.length() + 1];
+		std::strcpy(cstr, cadena.c_str());
+    	char* token = std::strtok(cstr, " ");
+		char ch = token[i];
+        if (std::isalpha(ch) ) {
+        	tieneLetras++;
+        } else if (std::isdigit(ch)) {
+            tieneDigitos++;
+        }else {
+            otro++;
+        }
+    }
+
+
+    std::cout << "Palabras: " << tieneLetras << std::endl;
+    std::cout << "Entero: " << tieneDigitos << std::endl;
+    std::cout << "Compuesta: " << (tieneLetras && tieneDigitos) << std::endl;
+
+    return 0;
+}
